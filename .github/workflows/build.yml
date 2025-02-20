@@ -12,7 +12,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: lucas-luchack/IUT-R4_02
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+          token: ${{ secrets.PAT }}
 
       - name: Set up JDK 11
         uses: actions/setup-java@v3
