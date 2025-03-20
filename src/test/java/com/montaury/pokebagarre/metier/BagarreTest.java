@@ -18,11 +18,6 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BagarreTest {
-
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
     void demarrer_thrown_error_when_pkm1_is_null() {
         // GIVEN
