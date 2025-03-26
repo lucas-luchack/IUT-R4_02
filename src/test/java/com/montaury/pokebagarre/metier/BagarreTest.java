@@ -18,10 +18,18 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BagarreTest {
+    private Bagarre bagarre;
+    private PokeBuildApi fausseApi;
+
+    @BeforeEach
+    void prepare() {
+        fausseApi = Mockito.mock(PokeBuildApi.class);
+        bagarre = new Bagarre(fausseApi);
+    }
+
     @Test
     void demarrer_thrown_error_when_pkm1_is_null() {
         // GIVEN
-        Bagarre bagarre = new Bagarre();
         String nomPremierPokemon = null;
         String nomSecondPokemon = "pikachu";
 
@@ -35,7 +43,6 @@ class BagarreTest {
     @Test
     void demarrer_thrown_error_when_pkm2_is_null() {
         // GIVEN
-        Bagarre bagarre = new Bagarre();
         String nomPremierPokemon = "pikachu";
         String nomSecondPokemon = null;
 
@@ -49,7 +56,6 @@ class BagarreTest {
     @Test
     void demarrer_thrown_error_when_pkm1_pkm2_are_equals() {
         // GIVEN
-        Bagarre bagarre = new Bagarre();
         String nomPremierPokemon = "pikachu";
         String nomSecondPokemon = "pikachu";
 
@@ -63,7 +69,6 @@ class BagarreTest {
     @Test
     void demarrer_thrown_error_when_pkm1_empty() {
         // GIVEN
-        Bagarre bagarre = new Bagarre();
         String nomPremierPokemon = "";
         String nomSecondPokemon = "raichu";
 
@@ -77,7 +82,6 @@ class BagarreTest {
     @Test
     void demarrer_thrown_error_when_pkm2_empty() {
         // GIVEN
-        Bagarre bagarre = new Bagarre();
         String nomPremierPokemon = "pikachu";
         String nomSecondPokemon = "";
 
@@ -91,8 +95,6 @@ class BagarreTest {
     @Test
     void demarrer_return_pkm1_winner_when_pkm1_ok_win_pkm2_ok() {
         // GIVEN
-        var fausseApi = Mockito.mock(PokeBuildApi.class);
-        Bagarre bagarre = new Bagarre(fausseApi);
         String nomPremierPokemon = "pikachu";
         String nomSecondPokemon = "raichu";
         Pokemon pikachu = ConstructeurDePokemon.unPokemon().avecAttaque(10).construire();
@@ -115,8 +117,6 @@ class BagarreTest {
     @Test
     void demarrer_return_pkm2_winner_when_pkm1_ok_loose_pkm2_ok() {
         // GIVEN
-        var fausseApi = Mockito.mock(PokeBuildApi.class);
-        Bagarre bagarre = new Bagarre(fausseApi);
         String nomPremierPokemon = "pikachu";
         String nomSecondPokemon = "raichu";
         Pokemon pikachu = ConstructeurDePokemon.unPokemon().construire();
@@ -139,8 +139,6 @@ class BagarreTest {
     @Test
     void demarrer_thrown_error_when_pkm1_doesnot_exist() {
         // GIVEN
-        var fausseApi = Mockito.mock(PokeBuildApi.class);
-        Bagarre bagarre = new Bagarre(fausseApi);
         String nomPremierPokemon = "pikachu";
         String nomSecondPokemon = "raichu";
         Pokemon raichu = ConstructeurDePokemon.unPokemon().construire();
@@ -164,8 +162,6 @@ class BagarreTest {
     @Test
     void demarrer_thrown_error_when_pkm2_doesnot_exist() {
         // GIVEN
-        var fausseApi = Mockito.mock(PokeBuildApi.class);
-        Bagarre bagarre = new Bagarre(fausseApi);
         String nomPremierPokemon = "pikachu";
         String nomSecondPokemon = "raichu";
         Pokemon pikachu = ConstructeurDePokemon.unPokemon().construire();
